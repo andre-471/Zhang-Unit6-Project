@@ -49,4 +49,21 @@ public class Ceelo {
             players[i] = new Player(name);
         }
     }
+
+    private void setWagers() {
+        for (Player player : players) {
+            System.out.println("Wager NOW!");
+            player.setWager(repeatUntilInt());
+        }
+
+    }
+
+    private int repeatUntilInt() {
+        while (!SCANNER.hasNextInt()) {
+            System.out.println("nuh uh");
+            SCANNER.nextLine();
+        }
+
+        return SCANNER.nextInt();
+    }
 }

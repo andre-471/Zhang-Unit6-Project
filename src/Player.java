@@ -21,5 +21,6 @@ public class Player extends Person {
 
     public String rollDice() {
         int[] rolledValues = Ceelo.rollDice();
+        return "";
     };
 }

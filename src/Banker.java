@@ -13,6 +13,11 @@ public class Banker extends Person{
         if (ArrayUtility.ifEqual(rolledValues, Ceelo.ROLL_LOST)) {
             return "lost";
         }
+        if (ArrayUtility.ifDuplicateValues(rolledValues)) {
+            return String.valueOf(ArrayUtility.getRarestValue(rolledValues));
+        }
+
+        return "indeterminate";
     }
 
 
