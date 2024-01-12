@@ -39,7 +39,9 @@ public class Ceelo {
     }
 
     private void startRound() {
+        setWagers();
         banker.rollDice();
+
     }
 
     private void createPeople() {
@@ -52,10 +54,9 @@ public class Ceelo {
 
     private void setWagers() {
         for (Player player : players) {
-            System.out.println("Wager NOW!");
+            System.out.println("Wager!");
             player.setWager(repeatUntilInt());
         }
-
     }
 
     private int repeatUntilInt() {

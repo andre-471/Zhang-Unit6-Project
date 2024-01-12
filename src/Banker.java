@@ -4,21 +4,4 @@ public class Banker extends Person{
     public Banker() {
         super(INITIAL_CHIPS);
     }
-
-    public String rollDice() {
-        int[] rolledValues = Ceelo.rollDice();
-        if (ArrayUtility.ifEqual(rolledValues, Ceelo.ROLL_WIN) || ArrayUtility.allEqual(rolledValues)) {
-            return "win";
-        }
-        if (ArrayUtility.ifEqual(rolledValues, Ceelo.ROLL_LOST)) {
-            return "lost";
-        }
-        if (ArrayUtility.ifDuplicateValues(rolledValues)) {
-            return String.valueOf(ArrayUtility.getRarestValue(rolledValues));
-        }
-
-        return "indeterminate";
-    }
-
-
 }

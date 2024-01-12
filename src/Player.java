@@ -6,7 +6,7 @@ public class Player extends Person {
     public Player(String name) {
         super(INITIAL_CHIPS);
         this.name = name;
-        wager = 0;
+        wager = -1;
     }
 
     public String getName() {
@@ -19,8 +19,4 @@ public class Player extends Person {
         return true;
     }
 
-    public String rollDice() {
-        int[] rolledValues = Ceelo.rollDice();
-        return "";
-    };
 }
