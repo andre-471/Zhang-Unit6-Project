@@ -19,4 +19,8 @@ public class Player extends Person {
         return true;
     }
 
+    public int getWager() {
+        return wager;
+    }
+
 }

@@ -1,14 +1,23 @@
+import java.util.Arrays;
+
 public class Dice {
-    private int value;
+    private int[] values;
+    public Dice(int count) {
+        values = new int[count];
+    }
+
     public Dice() {
-        value = -1;
+        values = new int[1];
     }
 
-    public void rollDice() {
-        value = (int) (Math.random() * 6) + 1;
+    public int[] rollDice() {
+        for (int i = 0; i < values.length; i++) {
+            values[i] = (int) (Math.random() * 6) + 1;
+        }
+        return getValues();
     }
 
-    public int getValue() {
-        return value;
+    public int[] getValues() {
+        return Arrays.copyOf(values, values.length);
     }
 }
