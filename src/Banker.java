@@ -4,5 +4,10 @@ public class Banker extends Person {
     public Banker() {
         super(INITIAL_CHIPS);
     }
+
+    public String toString() {
+        return "banker:\n" +
+                "chips: " + getChips() + "\n" +
+                "in game: " + isInGame();
     }
 }

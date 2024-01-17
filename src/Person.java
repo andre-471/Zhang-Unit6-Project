@@ -2,10 +2,12 @@ public abstract class Person {
     private int chips;
     private int score;
     private boolean inGame;
+    private int rollResult;
 
     public Person(int initalChips) {
         chips = initalChips;
         inGame = true;
+        rollResult = 0;
     }
 
     public int getChips() {
@@ -23,4 +25,14 @@ public abstract class Person {
     public boolean isInGame() {
         return inGame;
     }
+
+    public void setRollResult(int rollResult) {
+        this.rollResult = rollResult;
+    }
+
+    public int getRollResult() {
+        return rollResult;
+    }
+
+    public abstract String toString();
 }

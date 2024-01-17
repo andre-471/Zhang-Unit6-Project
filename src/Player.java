@@ -23,4 +23,9 @@ public class Player extends Person {
         return wager;
     }
 
+    public String toString() {
+        return "player " + name + ":\n" +
+                "chips: " + getChips() + "\n" +
+                "in game: " + isInGame();
+    }
 }
