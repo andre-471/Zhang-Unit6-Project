@@ -1,26 +1,23 @@
-import java.util.HashMap;
 import java.util.Scanner;
 
 public class Ceelo {
     private static final Scanner SCANNER = new Scanner(System.in);
     private static final int RESULT_WIN = -1;
     private static final int RESULT_LOST = -2;
-    private static final HashMap<Integer, String> hashMap = new HashMap<>();
     private static Dice dice = new Dice(3);
-    private int topScore;
     private Player[] players;
     private Banker banker;
+    private int topScore;
+
+    public Ceelo(int playerCount) {
+        players = new Player[playerCount];
+        banker = null;
+        topScore = 0;
+        play();
+    }
 
     public Ceelo() {
-        topScore = 0;
-        players = new Player[3];
-        banker = null;
-        hashMap.put(-1, "winner");
-        hashMap.put(-2, "loser");
-        for (int i = 1; i < 7; i++) {
-            hashMap.put(i, "rolled " + i);
-        }
-        play();
+        this(3);
     }
 
     private void play() {
@@ -38,22 +35,25 @@ public class Ceelo {
             printStats();
         }
         topScore = highestChipCountForPlayers();
+        System.out.println(topScore);
     }
 
     private void startRound() {
         setWagers();
 
         banker.setRollResult(dice.rollDice());
-        System.out.println("banker: " + hashMap.get(banker.getRollResult()));
+        System.out.println("banker: " + banker.getRollResult());
         processBankerRoll();
         if (!ifContinueRound()) {
             return;
         }
 
         for (Player player : players) {
-            if (!player.isInGame()) { continue; }
+            if (!player.isInGame()) {
+                continue;
+            }
             player.setRollResult(dice.rollDice());
-            System.out.println("player: " + hashMap.get(player.getRollResult()));
+            System.out.println("player: " + player.getRollResult());
             processPlayerRoll(player);
         }
     }
@@ -69,7 +69,9 @@ public class Ceelo {
 
     private void setWagers() {
         for (Player player : players) {
-            if (!player.isInGame()) { continue; }
+            if (!player.isInGame()) {
+                continue;
+            }
             System.out.print("Wager for " + player.getName() + ": ");
             while (!player.setWager(repeatUntilInt())) {
                 System.out.print("wager too big nuh uh! ");
@@ -77,33 +79,6 @@ public class Ceelo {
         }
     }
 
-    private boolean atLeastOnePlayerInGame() {
-        for (Player player : players) {
-            if (player.isInGame()) {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-
-    private void printStats() {
-        System.out.println(banker);
-        for (Player player: players) {
-            System.out.println(player);
-        }
-    }
-
-    private int highestChipCountForPlayers() {
-        int chips = Integer.MIN_VALUE;
-
-        for (Player player : players) {
-            chips = Math.max(chips, player.getChips());
-        }
-
-        return chips;
-    }
     private void processBankerRoll() {
         switch (banker.getRollResult()) {
             case RESULT_WIN -> {
@@ -112,6 +87,7 @@ public class Ceelo {
             case RESULT_LOST -> {
                 bankerModifyPlayerWagers("pay");
             }
+            default -> {}
         }
     }
 
@@ -130,6 +106,13 @@ public class Ceelo {
                     bankerModifyPlayerWagers(player, "collect");
                 }
             }
+        }
+    }
+
+    private void printStats() {
+        System.out.println(banker);
+        for (Player player : players) {
+            System.out.println(player);
         }
     }
 
@@ -154,16 +137,41 @@ public class Ceelo {
 
     private void bankerModifyPlayerWagers(String action) {
         for (Player player : players) {
+            if (!player.isInGame()) {
+                continue;
+            }
             bankerModifyPlayerWagers(player, action);
         }
     }
 
+    private int highestChipCountForPlayers() {
+        int chips = Integer.MIN_VALUE;
+
+        for (Player player : players) {
+            chips = Math.max(chips, player.getChips());
+        }
+
+        return chips;
+    }
+
+    private boolean atLeastOnePlayerInGame() {
+        for (Player player : players) {
+            if (player.isInGame()) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     private int repeatUntilInt() {
         while (!SCANNER.hasNextInt()) {
-            System.out.println("nuh uh");
+            System.out.print("nuh uh: ");
             SCANNER.next();
         }
 
-        return SCANNER.nextInt();
+        int integer = SCANNER.nextInt();
+        SCANNER.nextLine();
+        return integer;
     }
 }

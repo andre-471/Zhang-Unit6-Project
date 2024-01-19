@@ -13,14 +13,14 @@ public class Player extends Person {
         return name;
     }
 
-    public boolean setWager(int wager) {
-        if (wager > super.getChips()) { return false; }
-        this.wager = wager;
-        return true;
-    }
-
     public int getWager() {
         return wager;
+    }
+
+    public boolean setWager(int wager) {
+        if (wager > getChips()) { return false; }
+        this.wager = wager;
+        return true;
     }
 
     public String toString() {

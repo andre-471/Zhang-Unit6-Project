@@ -9,14 +9,14 @@ public class Dice {
         values = new int[count];
     }
 
-    public Dice() {
-        values = new int[1];
-    }
-
     public int rollDice() {
         for (int i = 0; i < values.length; i++) {
             values[i] = (int) (Math.random() * 6) + 1;
         }
+        return parseRoll();
+    }
+
+    private int parseRoll() {
         if (ArrayUtility.ifEqual(values, ROLL_WIN) || ArrayUtility.allEqual(values)) {
             return -1;
         }
