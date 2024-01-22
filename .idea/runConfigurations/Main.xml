@@ -1,6 +1,6 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="Main" type="ShConfigurationType">
-    <option name="SCRIPT_TEXT" value="javac -d .\out\production\Terminal .\src\*.java; java -classpath .\out\production\Terminal Main" />
+    <option name="SCRIPT_TEXT" value="javac -d .\out\production\Terminal .\src\*.java; java -classpath .\out\production\Terminal CeeloRunner" />
     <option name="INDEPENDENT_SCRIPT_PATH" value="false" />
     <option name="SCRIPT_PATH" value="$PROJECT_DIR$/main.cmd" />
     <option name="SCRIPT_OPTIONS" value="" />

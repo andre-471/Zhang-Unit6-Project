@@ -35,7 +35,6 @@ public class Ceelo {
             printStats();
         }
         topScore = highestChipCountForPlayers();
-        System.out.println(topScore);
     }
 
     private void startRound() {
@@ -81,24 +80,16 @@ public class Ceelo {
 
     private void processBankerRoll() {
         switch (banker.getRollResult()) {
-            case RESULT_WIN -> {
-                bankerModifyPlayerWagers("collect");
-            }
-            case RESULT_LOST -> {
-                bankerModifyPlayerWagers("pay");
-            }
+            case RESULT_WIN -> bankerModifyPlayerWagers("collect");
+            case RESULT_LOST -> bankerModifyPlayerWagers("pay");
             default -> {}
         }
     }
 
     private void processPlayerRoll(Player player) {
         switch (player.getRollResult()) {
-            case RESULT_WIN -> {
-                bankerModifyPlayerWagers(player, "pay");
-            }
-            case RESULT_LOST -> {
-                bankerModifyPlayerWagers(player, "collect");
-            }
+            case RESULT_WIN -> bankerModifyPlayerWagers(player, "pay");
+            case RESULT_LOST -> bankerModifyPlayerWagers(player, "collect");
             default -> {
                 if (player.getRollResult() >= banker.getRollResult()) {
                     bankerModifyPlayerWagers(player, "pay");
