@@ -9,14 +9,20 @@ public class Dice {
         values = new int[count];
     }
 
-    public int rollDice() {
+    public String rollDice() {
         for (int i = 0; i < values.length; i++) {
             values[i] = (int) (Math.random() * 6) + 1;
         }
-        return parseRoll();
+
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < values.length; i++) {
+            sb.append(values[i]);
+            sb.append(" ");
+        }
+        return sb.toString();
     }
 
-    private int parseRoll() {
+    public int parseRoll() {
         if (ArrayUtility.ifEqual(values, ROLL_WIN) || ArrayUtility.allEqual(values)) {
             return -1;
         }
@@ -26,6 +32,6 @@ public class Dice {
         if (ArrayUtility.ifDuplicateValues(values)) {
             return ArrayUtility.getRarestValue(values);
         }
-        return rollDice();
+        return -3;
     }
 }

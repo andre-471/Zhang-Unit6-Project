@@ -4,6 +4,7 @@ public class Ceelo {
     private static final Scanner SCANNER = new Scanner(System.in);
     private static final int RESULT_WIN = -1;
     private static final int RESULT_LOST = -2;
+    private static final int RESULT_INDECISIVE = -3;
     private static Dice dice = new Dice(3);
     private Player[] players;
     private Banker banker;
@@ -39,10 +40,11 @@ public class Ceelo {
 
     private void startRound() {
         setWagers();
+        do {
+            System.out.printf("Banker %s%n",dice.rollDice());
+            banker.setRollResult(dice.parseRoll());
+        } while (!processBankerRoll());
 
-        banker.setRollResult(dice.rollDice());
-        System.out.println("banker: " + banker.getRollResult());
-        processBankerRoll();
         if (!ifContinueRound()) {
             return;
         }
@@ -51,16 +53,17 @@ public class Ceelo {
             if (!player.isInGame()) {
                 continue;
             }
-            player.setRollResult(dice.rollDice());
-            System.out.println("player: " + player.getRollResult());
-            processPlayerRoll(player);
+            do {
+                System.out.printf("Player %s %s%n",player.getName(), dice.rollDice());
+                player.setRollResult(dice.parseRoll());
+            } while (!processPlayerRoll(player));
         }
     }
 
     private void createPeople() {
         banker = new Banker();
         for (int i = 0; i < players.length; i++) {
-            System.out.println("name!!!!!!!!!!!!!");
+            System.out.print("What is your name? ");
             String name = SCANNER.nextLine().trim();
             players[i] = new Player(name);
         }
@@ -73,31 +76,46 @@ public class Ceelo {
             }
             System.out.print("Wager for " + player.getName() + ": ");
             while (!player.setWager(repeatUntilInt())) {
-                System.out.print("wager too big nuh uh! ");
+                System.out.printf("You only have %d chips, try again: ", player.getChips());
             }
         }
     }
 
-    private void processBankerRoll() {
-        switch (banker.getRollResult()) {
-            case RESULT_WIN -> bankerModifyPlayerWagers("collect");
-            case RESULT_LOST -> bankerModifyPlayerWagers("pay");
-            default -> {}
-        }
+    private boolean processBankerRoll() {
+        return switch (banker.getRollResult()) {
+            case RESULT_WIN -> {
+                bankerModifyPlayerWagers("collect");
+                yield true;
+            }
+            case RESULT_LOST -> {
+                bankerModifyPlayerWagers("pay");
+                yield true;
+            }
+            case RESULT_INDECISIVE -> false;
+            default -> true;
+        };
     }
 
-    private void processPlayerRoll(Player player) {
-        switch (player.getRollResult()) {
-            case RESULT_WIN -> bankerModifyPlayerWagers(player, "pay");
-            case RESULT_LOST -> bankerModifyPlayerWagers(player, "collect");
+    private boolean processPlayerRoll(Player player) {
+        return switch (player.getRollResult()) {
+            case RESULT_WIN -> {
+                bankerModifyPlayerWagers(player, "pay");
+                yield true;
+            }
+            case RESULT_LOST -> {
+                bankerModifyPlayerWagers(player, "collect");
+                yield true;
+            }
+            case RESULT_INDECISIVE -> false;
             default -> {
                 if (player.getRollResult() >= banker.getRollResult()) {
                     bankerModifyPlayerWagers(player, "pay");
                 } else {
                     bankerModifyPlayerWagers(player, "collect");
                 }
+                yield true;
             }
-        }
+        };
     }
 
     private void printStats() {
@@ -157,7 +175,7 @@ public class Ceelo {
 
     private int repeatUntilInt() {
         while (!SCANNER.hasNextInt()) {
-            System.out.print("nuh uh: ");
+            System.out.print("Type a number: ");
             SCANNER.next();
         }
 
