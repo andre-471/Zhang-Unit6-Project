@@ -1,6 +1,6 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Main" type="ShConfigurationType">
-    <option name="SCRIPT_TEXT" value="javac -d .\out\production\Terminal .\src\*.java; java -classpath .\out\production\Terminal CeeloRunner" />
+  <configuration default="false" name="CeeloRunner" type="ShConfigurationType" focusToolWindowBeforeRun="true">
+    <option name="SCRIPT_TEXT" value="javac -d .\out\production\Terminal .\src\*.java &amp;&amp; java &quot;-Dfile.encoding=UTF-8&quot; &quot;-Dsun.stdout.encoding=UTF-8&quot; &quot;-Dsun.stderr.encoding=UTF-8&quot; -classpath .\out\production\Terminal CeeloRunner" />
     <option name="INDEPENDENT_SCRIPT_PATH" value="false" />
     <option name="SCRIPT_PATH" value="$PROJECT_DIR$/main.cmd" />
     <option name="SCRIPT_OPTIONS" value="" />
