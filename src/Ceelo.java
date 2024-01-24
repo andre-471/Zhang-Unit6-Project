@@ -13,10 +13,6 @@ public class Ceelo {
     private int topScore;
     private String topPlayer;
 
-    public static boolean isDebugMode() {
-        return debugMode;
-    }
-
     public Ceelo(int playerCount) {
         players = new Player[playerCount];
         banker = null;
@@ -27,6 +23,10 @@ public class Ceelo {
 
     public Ceelo() {
         this(3);
+    }
+
+    public static boolean isDebugMode() {
+        return debugMode;
     }
 
     private void play() {
