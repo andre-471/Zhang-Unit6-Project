@@ -28,7 +28,7 @@ public abstract class Person {
 
     public void modifyChips(int chips) {
         this.chips += chips;
-         if (this.chips <= 0) {
+        if (this.chips <= 0) {
             this.chips = 0;
             inGame = false;
         }

@@ -10,13 +10,17 @@ public class ConsoleUtil {
     public static final String WHITE = "\033[0;37m";   // WHITE
 
     public static void clearScreen() {
-        if (Ceelo.isDebugMode()) { return; }
+        if (Ceelo.isDebugMode()) {
+            return;
+        }
         System.out.print("\033[H\033[2J");
         System.out.flush();
     }
 
     public static void sleep(int ms) {
-        if (Ceelo.isDebugMode()) { return; }
+        if (Ceelo.isDebugMode()) {
+            return;
+        }
         try {
             Thread.sleep(ms);
         } catch (Exception ignored) {

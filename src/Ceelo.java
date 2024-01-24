@@ -195,7 +195,7 @@ public class Ceelo {
                 ConsoleUtil.sleep(2000);
                 if (player.getRollResult() >= banker.getRollResult()) {
                     System.out.printf("%s%s%s beats the %sbanker%s (who has a score of %s%d%s) " +
-                            "and collects their wager from the %sbanker%s!\n",
+                                    "and collects their wager from the %sbanker%s!\n",
                             ConsoleUtil.CYAN, player.getName(), ConsoleUtil.RESET,
                             ConsoleUtil.CYAN, ConsoleUtil.RESET,
                             ConsoleUtil.PURPLE, banker.getRollResult(), ConsoleUtil.RESET,
@@ -203,7 +203,7 @@ public class Ceelo {
                     bankerModifyPlayerWagers(player, "pay");
                 } else {
                     System.out.printf("%s%s%s loses to the %sbanker%s (who has a score of %s%d%s) " +
-                            "and gives their wager to the %sbanker%s!\n",
+                                    "and gives their wager to the %sbanker%s!\n",
                             ConsoleUtil.CYAN, player.getName(), ConsoleUtil.RESET,
                             ConsoleUtil.CYAN, ConsoleUtil.RESET,
                             ConsoleUtil.PURPLE, banker.getRollResult(), ConsoleUtil.RESET,

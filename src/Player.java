@@ -18,7 +18,9 @@ public class Player extends Person {
     }
 
     public boolean setWager(int wager) {
-        if (wager > getChips()) { return false; }
+        if (wager > getChips()) {
+            return false;
+        }
         this.wager = wager;
         return true;
     }

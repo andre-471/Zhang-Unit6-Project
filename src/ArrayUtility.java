@@ -1,7 +1,7 @@
 public class ArrayUtility {
     private ArrayUtility() {}
 
-     public static boolean ifValueInArray(Object value, Object[] array) {
+    public static boolean ifValueInArray(Object value, Object[] array) {
         for (Object arrayValue : array) {
             if (value.equals(arrayValue)) {
                 return true;
@@ -34,7 +34,9 @@ public class ArrayUtility {
     }
 
     public static boolean allEqual(int[] array) {
-        if (array.length == 0) { return false; }
+        if (array.length == 0) {
+            return false;
+        }
 
         int toCompare = array[0];
 
@@ -48,7 +50,9 @@ public class ArrayUtility {
     }
 
     public static boolean ifEqual(int[] array1, int[] array2) {
-        if (array1.length != array2.length) { return false; }
+        if (array1.length != array2.length) {
+            return false;
+        }
 
         // this is horribly inefficient
         for (int value : array1) {
@@ -67,7 +71,7 @@ public class ArrayUtility {
     }
 
     public static boolean ifDuplicateValues(int[] array) {
-        for (int value : array){
+        for (int value : array) {
             int count = getValueCount(value, array);
             if (count > 1 && count < array.length) {
                 return true;
