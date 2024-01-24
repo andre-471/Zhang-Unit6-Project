@@ -6,8 +6,9 @@ public class Banker extends Person {
     }
 
     public String toString() {
-        return "banker:\n" +
-                "chips: " + getChips() + "\n" +
-                "in game: " + isInGame();
+        return "The " + ConsoleUtil.CYAN + "banker" + ConsoleUtil.RESET + ":\n" +
+                "Chips: " + ConsoleUtil.YELLOW + getChips() + ConsoleUtil.RESET + "\n" +
+                (isInGame() ? ConsoleUtil.GREEN + "IS" : ConsoleUtil.RED + "IS NOT") +
+                ConsoleUtil.RESET + " In Game ";
     }
 }

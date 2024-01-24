@@ -1,4 +1,4 @@
-public class ConsoleUtility {
+public class ConsoleUtil {
     public static final String RESET = "\033[0m";      // Reset
     public static final String BLACK = "\033[0;30m";   // BLACK
     public static final String RED = "\033[0;31m";     // RED
@@ -9,13 +9,14 @@ public class ConsoleUtility {
     public static final String CYAN = "\033[0;36m";    // CYAN
     public static final String WHITE = "\033[0;37m";   // WHITE
 
-    // CLEARSCREEN ONLY WORKS IN TERMINAL, NOT IN INTELLIJ'S RUN CONSOLE
     public static void clearScreen() {
+        if (Ceelo.isDebugMode()) { return; }
         System.out.print("\033[H\033[2J");
         System.out.flush();
     }
 
     public static void sleep(int ms) {
+        if (Ceelo.isDebugMode()) { return; }
         try {
             Thread.sleep(ms);
         } catch (Exception ignored) {

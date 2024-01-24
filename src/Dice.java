@@ -1,5 +1,3 @@
-import java.util.Arrays;
-
 public class Dice {
     private int[] values;
     private static final int[] ROLL_WIN = {4, 5, 6};
@@ -15,8 +13,8 @@ public class Dice {
         }
 
         StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < values.length; i++) {
-            sb.append(values[i]);
+        for (int value : values) {
+            sb.append(value);
             sb.append(" ");
         }
         return sb.toString();

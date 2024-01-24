@@ -17,9 +17,11 @@ public abstract class Person {
     public int getRollResult() {
         return rollResult;
     }
+
     public boolean isInGame() {
         return inGame;
     }
+
     public void setRollResult(int rollResult) {
         this.rollResult = rollResult;
     }
@@ -31,7 +33,6 @@ public abstract class Person {
             inGame = false;
         }
     }
-
 
     public abstract String toString();
 }

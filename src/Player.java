@@ -24,8 +24,9 @@ public class Player extends Person {
     }
 
     public String toString() {
-        return "player " + name + ":\n" +
-                "chips: " + getChips() + "\n" +
-                "in game: " + isInGame();
+        return "Player " + ConsoleUtil.CYAN + name + ConsoleUtil.RESET + ":\n" +
+                "Chips: " + ConsoleUtil.YELLOW + getChips() + ConsoleUtil.RESET + "\n" +
+                (isInGame() ? ConsoleUtil.GREEN + "IS" : ConsoleUtil.RED + "IS NOT") +
+                ConsoleUtil.RESET + " In Game ";
     }
 }
